@@ -5,7 +5,8 @@ find_package(OpenGL REQUIRED)
 find_package(GLEW REQUIRED)
 find_package(glfw3 REQUIRED)
 
-set(SOURCES src/main.cpp)
+set(SOURCES src/main.cpp
+            src/components/engine.cpp)
 set(INCLUDES include/engine.hpp)
 
 add_executable(engine ${SOURCES} ${INCLUDES})
