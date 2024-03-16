@@ -6,7 +6,9 @@
 #include <GLFW/glfw3.h>
 #include <glm/glm.hpp>
 
-using namespace glm;
+namespace Engine
+{
+    GLFWwindow* initializeWindow();
 
-int initializeGLFW();
-int run();
+    int run();
+}

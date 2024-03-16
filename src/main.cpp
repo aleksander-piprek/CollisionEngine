@@ -2,6 +2,6 @@
 
 int main()
 {
-    run();
+    Engine::run();
 }
 
