@@ -1,4 +1,4 @@
-# C++ Collision engine
+# Collision engine
 
 Work in progress...
 
