@@ -9,5 +9,6 @@ int main()
         engine->update();
         engine->lateUpdate();
         engine->draw();
+        engine->calculateDeltaTime();
     }
 }

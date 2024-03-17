@@ -13,6 +13,7 @@ class Engine
         void lateUpdate();
         void draw();
         bool isRunning() const;
+        void calculateDeltaTime();
         
     private:
         Window window;
@@ -24,6 +25,9 @@ class Engine
 
         // Shape
         sf::CircleShape shape;
+
+        sf::Clock clock;
+        float deltaTime;
 }; 
 
 #endif

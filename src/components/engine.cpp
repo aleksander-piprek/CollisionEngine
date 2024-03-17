@@ -3,6 +3,8 @@
 Engine::Engine()
     : window("Collision Engine")
 {
+    deltaTime = clock.restart().asSeconds();
+
     // objectTexture.loadFromFile(workingDir.get() + "heart.png");
     // objectSprite.setTexture(objectTexture);
 
@@ -12,9 +14,12 @@ Engine::Engine()
 
 void Engine::update()
 {
-    const sf::Vector2f& shapePos = shape.getPosition();
-    shape.setPosition(shapePos.x + 1, shapePos.y + 1);
     window.update();
+
+    const sf::Vector2f& shapePos = shape.getPosition();
+    const int pixelsToMovePerSec = 20;
+    const float frameMovement = pixelsToMovePerSec * deltaTime;
+    shape.setPosition(shapePos.x + frameMovement, shapePos.y);
 }
 
 void Engine::lateUpdate()
@@ -32,4 +37,9 @@ void Engine::draw()
 bool Engine::isRunning() const
 {
     return window.isOpen();
+}
+
+void Engine::calculateDeltaTime()
+{
+    deltaTime = clock.restart().asSeconds();
 }
