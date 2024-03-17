@@ -24,6 +24,6 @@ $ sudo apt-get install build-essential cmake libsfml-dev
 $ git clone https://github.com/aleksander-piprek/Collision-Engine.git
 $ mkdir build
 $ cd build
-$ cmake --build ..
-$ cmake .
+$ cmake ..
+$ cmake --build .
 ~~~
