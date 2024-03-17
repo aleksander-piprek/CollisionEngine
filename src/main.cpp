@@ -2,5 +2,12 @@
 
 int main()
 {
-    Engine::run();
+    auto engine = new Engine();
+
+    while(engine->isRunning())
+    {
+        engine->update();
+        engine->lateUpdate();
+        engine->draw();
+    }
 }

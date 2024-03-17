@@ -1,24 +1,35 @@
 #include "../../include/engine.hpp"
 
-int Engine::run()
+Engine::Engine()
+    : window("Collision Engine")
 {
-    sf::RenderWindow window(sf::VideoMode(200, 200), "SFML works!");
-    sf::CircleShape shape(100.f);
-    shape.setFillColor(sf::Color::Green);
+    // objectTexture.loadFromFile(workingDir.get() + "heart.png");
+    // objectSprite.setTexture(objectTexture);
 
-    while (window.isOpen())
-    {
-        sf::Event event;
-        while (window.pollEvent(event))
-        {
-            if (event.type == sf::Event::Closed)
-                window.close();
-        }
+    shape.setRadius(150);
+    shape.setFillColor(sf::Color(100, 250, 50));    
+}
 
-        window.clear();
-        window.draw(shape);
-        window.display();
-    }
+void Engine::update()
+{
+    const sf::Vector2f& shapePos = shape.getPosition();
+    shape.setPosition(shapePos.x + 1, shapePos.y + 1);
+    window.update();
+}
 
-    return 0;
+void Engine::lateUpdate()
+{
+
+}
+
+void Engine::draw()
+{
+    window.beginDraw();
+    window.draw(shape);
+    window.endDraw();
+}
+
+bool Engine::isRunning() const
+{
+    return window.isOpen();
 }

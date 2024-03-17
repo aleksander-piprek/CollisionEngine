@@ -3,9 +3,14 @@ project(engine)
 
 find_package(SFML 2.5 COMPONENTS graphics audio REQUIRED)
 
-set(SOURCES src/main.cpp
-            src/components/engine.cpp)
-set(INCLUDES include/engine.hpp)
+set(SOURCES "src/main.cpp"
+            "src/components/engine.cpp"
+            "src/components/window.cpp"
+            "src/components/workingDirectory.cpp")
+
+set(INCLUDES "include/engine.hpp"
+             "include/window.hpp"
+             "include/workingDirectory.hpp")
 
 add_executable(engine ${SOURCES} ${INCLUDES})
 
