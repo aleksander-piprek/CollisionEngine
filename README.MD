@@ -6,12 +6,16 @@ What is working:
 - Engine creates and moves one sphere object
 
 To be implemented:
+- Applying boundaries
+- Object collision, gravity
+- Drawing vectors of velocity and acceleration
 - User input to control object movement
 - More sophisticated objects
-- Screen boundaries
-- Object collision, gravity
-- Different simulations scenarios (i.e. filling bucket with small circles)
-
+- Different simulations scenarios: 
+ * filling bucket with small spheres
+ * elastic collisions simulations
+- Simple GUI for handling different simulations
+ 
 ## Dependencies installation
 ~~~
 $ sudo apt-get update
