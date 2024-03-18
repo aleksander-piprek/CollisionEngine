@@ -1,8 +1,11 @@
 #include "../../include/sphere.hpp"
 
-Sphere::Sphere(float radius)
-    : radius(radius)
-{        
+Sphere::Sphere()
+    : radius(radius), color(color)
+{
     shape.setRadius(radius);
-    shape.setFillColor(sf::Color(100, 250, 50));    
+    shape.setFillColor(sf::Color(color.red, 
+                                 color.green, 
+                                 color.blue, 
+                                 color.opacity));    
 }
