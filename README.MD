@@ -12,8 +12,8 @@ To be implemented:
 - User input to control object movement
 - More sophisticated objects
 - Different simulations scenarios: 
-⋅⋅⋅filling bucket with small spheres
-⋅⋅⋅elastic collisions simulations
+```filling bucket with small spheres
+```elastic collisions simulations
 - Simple GUI for handling different simulations
  
 ## Dependencies installation
