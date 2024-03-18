@@ -4,6 +4,7 @@
 #include <SFML/Graphics.hpp>
 #include "window.hpp"
 #include "workingDirectory.hpp"
+#include "sphere.hpp"
 
 class Engine
 {
@@ -18,13 +19,7 @@ class Engine
     private:
         Window window;
         WorkingDirectory workingDir;
-        
-        // Custom texture
-        // sf::Texture objectTexture;
-        // sf::Sprite objectSprite;
-
-        // Shape
-        sf::CircleShape shape;
+        Sphere obj1;
 
         sf::Clock clock;
         float deltaTime;

@@ -6,11 +6,13 @@ find_package(SFML 2.5 COMPONENTS graphics audio REQUIRED)
 set(SOURCES "src/main.cpp"
             "src/components/engine.cpp"
             "src/components/window.cpp"
-            "src/components/workingDirectory.cpp")
+            "src/components/workingDirectory.cpp"
+            "src/components/sphere.cpp")
 
 set(INCLUDES "include/engine.hpp"
              "include/window.hpp"
-             "include/workingDirectory.hpp")
+             "include/workingDirectory.hpp"
+             "include/sphere.hpp")
 
 add_executable(engine ${SOURCES} ${INCLUDES})
 
