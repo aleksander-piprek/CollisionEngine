@@ -15,11 +15,12 @@ class Engine
         void draw();
         bool isRunning() const;
         void calculateDeltaTime();
+        void generateObjects(int count);
         
     private:
         Window window;
         WorkingDirectory workingDir;
-        Sphere obj1;
+        std::vector<Sphere> objects;
 
         sf::Clock clock;
         float deltaTime;

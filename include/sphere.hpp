@@ -8,7 +8,7 @@ class Sphere
     public:
         Sphere(float radius);
         sf::CircleShape& getShape() { return shape; }
-
+        
     private:
         sf::CircleShape shape; 
         int radius;        
