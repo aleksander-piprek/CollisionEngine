@@ -12,14 +12,14 @@ To be implemented:
 - Object collision, gravity
 - Different simulations scenarios (i.e. filling bucket with small circles)
 
-## Dependencies
+## Dependencies installation
 ~~~
 $ sudo apt-get update
 $ sudo apt-get upgrade
 $ sudo apt-get install build-essential cmake libsfml-dev
 ~~~
 
-## Running
+## Building
 ~~~
 $ git clone https://github.com/aleksander-piprek/Collision-Engine.git
 $ mkdir build
