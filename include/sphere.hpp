@@ -7,10 +7,12 @@ class Sphere
 {
     public:
         Sphere();
-        sf::CircleShape& getShape() { return shape; }
-        void update();
+        void updatePosition(float dt);
+        void setInitialPosition(sf::Vector2f newPosition);
+        void accelerate(sf::Vector2f acc);
 
-        int radius;        
+        sf::CircleShape shape; 
+        int radius;
         struct 
         {
             sf::Uint8 red = 255;
@@ -19,14 +21,13 @@ class Sphere
             sf::Uint8 opacity = 255;
         } color;        
 
-    private:
-        sf::CircleShape shape; 
+        sf::Vector2f initialPosition {800.0f, 0.0f};
+        sf::Vector2f positionCurrent;
+        sf::Vector2f positionOld;
 
-        // sf::Vec2d pos { 0.0, 0.0 };
-        // sf::Vec2d vel { 2.0, 0.0 }; 
-        // sf::Vec2d acc { 0.0, 0.0 }; 
-        // double mass = 1.0; 
-        // double drag = 0.1; 
+        sf::Vector2f velocity;
+
+        sf::Vector2f acceleration;        
 };
 
 #endif

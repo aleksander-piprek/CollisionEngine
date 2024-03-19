@@ -3,24 +3,19 @@
 Engine::Engine()
     : window("Collision Engine")
 {
-    deltaTime = clock.restart().asSeconds();
-    generateObjects(50);
+    generateObjects(100);
 }
 
-void Engine::update()
+void Engine::update(float dt)
 {
     window.update();
+    applyGravity();
+    applyConstraint();
 
-    // auto objectIterator = objects.begin();
-    // auto object = std::move(*objectIterator);
-    // objects.erase(objectIterator);
     for(auto& object : objects)
     {
-        sf::CircleShape& shape = object.getShape();
-        const sf::Vector2f& shapePos = shape.getPosition();
-        const int pixelsToMovePerSec = 50;
-        const float frameMovement = pixelsToMovePerSec * deltaTime;
-        shape.setPosition(shapePos.x, shapePos.y + frameMovement);
+        const sf::Vector2f& shapePos = object.shape.getPosition();
+        object.updatePosition(dt);
     }
 }
 
@@ -34,7 +29,7 @@ void Engine::draw()
     window.beginDraw();
 
     for(auto& object : objects)
-        window.draw(object.getShape());
+        window.draw(object.shape);
     
     window.endDraw();
 }
@@ -44,11 +39,6 @@ bool Engine::isRunning() const
     return window.isOpen();
 }
 
-void Engine::calculateDeltaTime()
-{
-    deltaTime = clock.restart().asSeconds();
-}
-
 void Engine::generateObjects(int objectsCount)
 {
     int iteration = 0;
@@ -56,7 +46,7 @@ void Engine::generateObjects(int objectsCount)
     while(iteration <= objectsCount)
     {
         Sphere object;
-        object.radius = 10.0 + iteration * 2;
+        object.radius = 25.0;
         object.color.red = 255 - iteration * 2;
         object.color.green = 0 + iteration * 2;
         object.color.blue = 0;
@@ -66,5 +56,25 @@ void Engine::generateObjects(int objectsCount)
         iteration++;
         if(iteration > objectsCount)
             break;
+    }
+}
+
+void Engine::applyGravity()
+{
+    for(auto& object : objects)
+        object.accelerate(gravity);
+}
+
+void Engine::applyConstraint()
+{
+    for(auto& object : objects)
+    {
+        const sf::Vector2f v = constraintCenter - object.positionCurrent;
+        const float dist = sqrt(v.x * v.x + v.y * v.y);        
+        if(dist > (constraintRadius - object.radius))
+        {
+            const sf::Vector2f n = v / dist;
+            object.positionCurrent = constraintCenter - n * (constraintRadius - object.radius);
+        }
     }
 }
