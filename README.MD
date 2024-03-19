@@ -3,11 +3,11 @@
 Work in progress...
 
 What is working:
-- Engine creates and moves one sphere object
+- Generating any amount of spheres from given position
+- Gravity and constraints of window
 
 To be implemented:
-- Applying boundaries
-- Object collision, gravity
+- Object collision
 - Drawing vectors of velocity and acceleration
 - User input to control object movement
 - More sophisticated objects
