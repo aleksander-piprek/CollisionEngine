@@ -11,12 +11,14 @@ set(SOURCES "src/main.cpp"
             "src/components/engine.cpp"
             "src/components/window.cpp"
             "src/components/workingDirectory.cpp"
-            "src/components/sphere.cpp")
+            "src/components/sphere.cpp"
+            "src/components/scene.cpp")
 
 set(INCLUDES "include/engine.hpp"
              "include/window.hpp"
              "include/workingDirectory.hpp"
-             "include/sphere.hpp")
+             "include/sphere.hpp"
+             "include/scene.hpp")
 
 add_executable(engine ${SOURCES} ${INCLUDES})
 

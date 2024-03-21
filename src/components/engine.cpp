@@ -21,7 +21,6 @@ void Engine::update(float dt)
 
 void Engine::lateUpdate()
 {
-
 }
 
 void Engine::draw()
@@ -67,14 +66,31 @@ void Engine::applyGravity()
 
 void Engine::applyConstraint()
 {
+    sf::Vector2u windowSize = window.getSize();
+
     for(auto& object : objects)
     {
-        const sf::Vector2f v = constraintCenter - object.positionCurrent;
-        const float dist = sqrt(v.x * v.x + v.y * v.y);        
-        if(dist > (constraintRadius - object.radius))
-        {
-            const sf::Vector2f n = v / dist;
-            object.positionCurrent = constraintCenter - n * (constraintRadius - object.radius);
-        }
+        sf::Vector2f position = object.positionCurrent;
+        sf::Vector2f size = object.shape.radius; // Assuming objects are circles
+
+        // Check left border
+        if (position.x - size.x < 0) 
+            position.x = size.x; // Adjust the position to be within the window
+        
+        // Check right border
+        if (position.x + size.x > windowSize.x) 
+            position.x = windowSize.x - size.x; // Adjust the position to be within the window
+        
+        // Check top border
+        if (position.y - size.y < 0) 
+            position.y = size.y; // Adjust the position to be within the window
+        
+        // Check bottom border
+        if (position.y + size.y > windowSize.y) 
+            position.y = windowSize.y - size.y; // Adjust the position to be within the window
+        
+
+        // Update the object's position after applying constraints
+        object.positionCurrent = position;
     }
 }

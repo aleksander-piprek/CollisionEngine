@@ -5,6 +5,7 @@
 #include "window.hpp"
 #include "workingDirectory.hpp"
 #include "sphere.hpp"
+#include "scene.hpp"
 #include <math.h>
 
 class Engine
@@ -24,9 +25,6 @@ class Engine
         WorkingDirectory workingDir;
         std::vector<Sphere> objects;
         sf::Vector2f gravity = {0.0f, 1.0f};
-
-        const sf::Vector2f constraintCenter{640.0f, 0.0f};
-        const float constraintRadius = 500.0f;
 }; 
 
 #endif

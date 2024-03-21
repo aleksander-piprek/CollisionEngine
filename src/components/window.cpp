@@ -1,7 +1,7 @@
 #include "../../include/window.hpp"
 
 Window::Window(const std::string& windowName)
-    : window(sf::VideoMode(1280, 720), windowName, sf::Style::Titlebar)
+    : window(sf::VideoMode(800, 600), windowName, sf::Style::Titlebar)
 {
     window.setVerticalSyncEnabled(true);
 }
