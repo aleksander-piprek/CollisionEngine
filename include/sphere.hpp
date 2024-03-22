@@ -21,7 +21,7 @@ class Sphere
             sf::Uint8 opacity = 255;
         } color;        
 
-        sf::Vector2f initialPosition {800.0f, 0.0f};
+        sf::Vector2f initialPosition {800.0f, 100.0f};
         sf::Vector2f positionCurrent;
         sf::Vector2f positionOld;
 

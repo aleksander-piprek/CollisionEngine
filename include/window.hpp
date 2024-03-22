@@ -15,9 +15,11 @@ class Window
         void endDraw();
 
         bool isOpen() const;
-    
-    private:
+
         sf::RenderWindow window;
+        sf::Vector2u size;
+
+    private:
 };
 
 #endif

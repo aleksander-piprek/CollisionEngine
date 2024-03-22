@@ -13,10 +13,7 @@ void Engine::update(float dt)
     applyConstraint();
 
     for(auto& object : objects)
-    {
-        const sf::Vector2f& shapePos = object.shape.getPosition();
         object.updatePosition(dt);
-    }
 }
 
 void Engine::lateUpdate()
@@ -45,7 +42,7 @@ void Engine::generateObjects(int objectsCount)
     while(iteration <= objectsCount)
     {
         Sphere object;
-        object.radius = 25.0;
+        object.radius = 50.0;
         object.color.red = 255 - iteration * 2;
         object.color.green = 0 + iteration * 2;
         object.color.blue = 0;
@@ -66,29 +63,26 @@ void Engine::applyGravity()
 
 void Engine::applyConstraint()
 {
-    sf::Vector2u windowSize = window.getSize();
-
     for(auto& object : objects)
     {
         sf::Vector2f position = object.positionCurrent;
-        sf::Vector2f size = object.shape.radius; // Assuming objects are circles
+        sf::Vector2f size(object.radius * 2, object.radius * 2);
 
-        // Check left border
-        if (position.x - size.x < 0) 
-            position.x = size.x; // Adjust the position to be within the window
-        
-        // Check right border
-        if (position.x + size.x > windowSize.x) 
-            position.x = windowSize.x - size.x; // Adjust the position to be within the window
-        
-        // Check top border
-        if (position.y - size.y < 0) 
-            position.y = size.y; // Adjust the position to be within the window
-        
-        // Check bottom border
-        if (position.y + size.y > windowSize.y) 
-            position.y = windowSize.y - size.y; // Adjust the position to be within the window
-        
+    // Check left border
+    if (position.x - size.x < 0) 
+        position.x = size.x; // Adjust the position to be within the window
+
+    // Check right border
+    if (position.x + size.x > window.size.x) 
+        position.x = window.size.x - size.x; // Adjust the position to be within the window
+
+    // Check top border
+    if (position.y - size.y < 0) 
+        position.y = size.y; // Adjust the position to be within the window
+
+    // Check bottom border
+    if (position.y + size.y > window.size.y) 
+        position.y = window.size.y - size.y; // Adjust the position to be within the window
 
         // Update the object's position after applying constraints
         object.positionCurrent = position;
