@@ -11,7 +11,11 @@ class Sphere
         void setInitialPosition(sf::Vector2f newPosition);
         void accelerate(sf::Vector2f acc);
 
+        // Custom shape
         sf::CircleShape shape; 
+
+
+
         int radius;
         struct 
         {
@@ -27,7 +31,7 @@ class Sphere
 
         sf::Vector2f velocity;
 
-        sf::Vector2f acceleration;        
+        sf::Vector2f acceleration;
 };
 
 #endif

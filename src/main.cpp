@@ -7,7 +7,6 @@ int main()
     while(engine->isRunning())
     {
         engine->update(0.5f);
-        engine->lateUpdate();
         engine->draw();
     }
 }
