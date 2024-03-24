@@ -36,7 +36,7 @@ class Engine
         sf::Sprite objectSprite;      
 
         int objectReleaseCount = 1;  
-        int totalObjects = 50;
+        int totalObjects = 100;
         float totalTime = 0;
 }; 
 

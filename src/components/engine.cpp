@@ -4,16 +4,17 @@ Engine::Engine()
     : window("Collision Engine")
 {
     generateObjects(totalObjects);
+    for(auto& object : objects)
+        applyGravity();
 }
 
 void Engine::update(float dt)
 {
     window.update();
-    applyGravity();
     applyConstraint();
 
     totalTime += dt;
-    if(totalTime == 10.0f)
+    if(totalTime == 15.0f)
         if(objectReleaseCount != totalObjects)
         {
             objectReleaseCount++;
@@ -50,7 +51,7 @@ void Engine::generateObjects(int objectsCount)
         Sphere object;
         object.radius = 50.0;
         object.color.red = 255;
-        object.color.green = 0 + iteration * 2;
+        object.color.green = 150;
         object.color.blue = 0;
         object.color.opacity = 255;
 
