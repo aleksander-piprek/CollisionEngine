@@ -1,34 +1,34 @@
 #include "../../include/sphere.hpp"
 
 Sphere::Sphere()
-    : radius(radius), 
-      color(color)
 {
     shape.setRadius(radius);
     shape.setFillColor(sf::Color(color.red, 
                                  color.green, 
                                  color.blue, 
                                  color.opacity));    
-    setInitialPosition(initialPosition);                                 
+    setInitialPosition(position.initial);
 }
 
 void Sphere::updatePosition(float dt)
 {
-    velocity = positionCurrent - positionOld;
-    // Save current position
-    positionOld = positionCurrent;
-    // Verlet integration
-    positionCurrent = positionCurrent + velocity + acceleration * dt * dt;
+    velocity = position.current - position.previous;
 
-    shape.setPosition(positionCurrent);
-    // Reset acceleration
+    position.previous = position.current;
+
+    position.current = position.current + velocity + acceleration * dt * dt;
+
+    shape.setPosition(position.current);
+    
     acceleration = {};
 }
 
 void Sphere::setInitialPosition(sf::Vector2f newPosition)
 {
-    positionCurrent = initialPosition;
-    positionOld = newPosition;
+    position.current = position.initial;
+
+    position.previous = newPosition;
+
     shape.setPosition(newPosition);
 }
 

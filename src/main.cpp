@@ -6,7 +6,7 @@ int main()
 
     while(engine->isRunning())
     {
-        engine->update(0.25f);
+        engine->update(0.5f);
         engine->draw();
     }
 }

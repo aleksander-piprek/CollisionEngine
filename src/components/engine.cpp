@@ -3,28 +3,18 @@
 Engine::Engine()
     : window("Collision Engine")
 {
-    generateObjects(totalObjects);
-    for(auto& object : objects)
-        applyGravity();
+    generateObjects(totalObjects);                             
 }
 
 void Engine::update(float dt)
 {
     window.update();
-    applyConstraint();
-
-    totalTime += dt;
-    if(totalTime == 15.0f)
-        if(objectReleaseCount != totalObjects)
-        {
-            objectReleaseCount++;
-            totalTime = 0;
-        }
+    releaseObject(dt);
+    applyConstraint();    
+    applyGravity();
 
     for(int i = 0; i < objectReleaseCount; i++)
-    {
         objects[i].updatePosition(dt);
-    }
 }
 
 void Engine::draw()
@@ -49,7 +39,7 @@ void Engine::generateObjects(int objectsCount)
     while(iteration <= objectsCount)
     {
         Sphere object;
-        object.radius = 50.0;
+        object.radius = 20.0;
         object.color.red = 255;
         object.color.green = 150;
         object.color.blue = 0;
@@ -62,17 +52,28 @@ void Engine::generateObjects(int objectsCount)
     }
 }
 
+void Engine::releaseObject(float dt)
+{
+    totalTime += dt;
+    if(totalTime == releaseTime)
+        if(objectReleaseCount != totalObjects)
+        {
+            objectReleaseCount++;
+            totalTime = 0;
+        }
+}
+
 void Engine::applyGravity()
 {
-    for(auto& object : objects)
-        object.accelerate(gravity);
+    for(int i = 0; i < objectReleaseCount; i++)
+        objects[i].accelerate(gravity);
 }
 
 void Engine::applyConstraint()
 {
     for(auto& object : objects)
     {
-        sf::Vector2f position = object.positionCurrent;
+        sf::Vector2f position = object.position.current;
         sf::Vector2f size(object.radius * 2, object.radius * 2);
 
         // Left border
@@ -80,17 +81,17 @@ void Engine::applyConstraint()
             position.x = size.x; 
 
         // Right border
-        if (position.x + size.x > window.size.x) 
-            position.x = window.size.x - size.x; 
+        if (position.x + size.x > window.screenWidth) 
+            position.x = window.screenWidth - size.x; 
 
         // Top border
         if (position.y - size.y < 0) 
             position.y = size.y; 
 
         // Bottom border
-        if (position.y + size.y > window.size.y) 
-            position.y = window.size.y - size.y; 
+        if (position.y + size.y > window.screenHeight) 
+            position.y = window.screenHeight - size.y; 
 
-        object.positionCurrent = position;
+        object.position.current = position;
     }
 }
