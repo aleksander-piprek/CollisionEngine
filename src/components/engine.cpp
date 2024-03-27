@@ -14,7 +14,7 @@ void Engine::update(float dt)
     applyConstraint();
 
     totalTime += dt;
-    if(totalTime == 15.0f)
+    if(totalTime == dt * 60)
         if(objectReleaseCount != totalObjects)
         {
             objectReleaseCount++;
