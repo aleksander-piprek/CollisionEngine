@@ -17,8 +17,8 @@ class Window
         bool isOpen() const;
 
         sf::RenderWindow window;
-        const int screenWidth = 800;
-        const int screenHeight = 600;
+        const int screenWidth = 1280;
+        const int screenHeight = 720;
 };
 
 #endif

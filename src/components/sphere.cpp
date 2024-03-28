@@ -20,7 +20,7 @@ void Sphere::updatePosition(float dt)
 
     shape.setPosition(position.current);
     
-    std::cout << "Position = x: " << position.current.x << "y: " << position.current.y << std::endl; 
+    // std::cout << "Position = x: " << position.current.x << " y: " << position.current.y << std::endl; 
 
     acceleration = {};
 }

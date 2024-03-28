@@ -3,26 +3,43 @@
 Engine::Engine()
     : window("Collision Engine")
 {
-    generateObjects(totalObjects);                             
+    // generateObjects(totalObjects);                             
 }
 
 void Engine::update(float dt)
 {
     window.update();
-    releaseObject(dt);
-    applyConstraint();    
-    applyGravity();
+    // releaseObject(dt);
+    // applyConstraint();    
+    // applyGravity();
 
-    for(int i = 0; i < objectReleaseCount; i++)
-        objects[i].updatePosition(dt);
+    // objects[0].updatePosition(dt);
+
+    // for(int i = 0; i < objectReleaseCount; i++)
+        // objects[i].updatePosition(dt);
 }
 
 void Engine::draw()
 {
     window.beginDraw();
 
-    for(int i = 0; i < objectReleaseCount; i++)
-        window.draw(objects[i].shape);
+    for(int i = 0; i < 2; i++)
+    {
+        Sphere object;
+
+        object.radius = 40.0;
+        object.color.red = 255;
+        object.color.green = 150;
+        object.color.blue = 0;
+        object.color.opacity = 255;
+
+        objects.push_back(object);
+    }
+
+    window.draw(objects[1].shape);
+
+    // for(int i = 0; i < objectReleaseCount; i++)
+        // window.draw(objects[i].shape);
     
     window.endDraw();
 }
@@ -37,13 +54,16 @@ void Engine::generateObjects(int objectsCount)
     for(int i = 0; i < objectsCount; i++)
     {
         Sphere object;
+
         object.radius = 40.0;
         object.color.red = 255;
         object.color.green = 150;
         object.color.blue = 0;
         object.color.opacity = 255;
+
         objects.push_back(object);
     }
+    std::cout << "Generated " << objects.size() << " objects" << std::endl;
 }
 
 void Engine::releaseObject(float dt)
