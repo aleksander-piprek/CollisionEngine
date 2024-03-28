@@ -13,7 +13,7 @@ void Window::update()
     sf::Event event;
     if(window.pollEvent(event))
     {
-        if(event.type == sf::Event::Closed)
+        if(event.type == sf::Event::Closed || event.key.code == sf::Keyboard::Escape)
         {
             window.close();
         }
