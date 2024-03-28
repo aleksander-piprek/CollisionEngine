@@ -17,9 +17,8 @@ class Window
         bool isOpen() const;
 
         sf::RenderWindow window;
-        sf::Vector2u size;
-
-    private:
+        const int screenWidth = 800;
+        const int screenHeight = 600;
 };
 
 #endif

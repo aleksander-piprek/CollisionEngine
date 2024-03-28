@@ -1,10 +1,11 @@
 #include "../../include/window.hpp"
 
 Window::Window(const std::string& windowName)
-    : window(sf::VideoMode(1920, 1080), windowName, sf::Style::Titlebar)
+    : window(sf::VideoMode(800, 600), 
+      windowName, 
+      sf::Style::Titlebar)
 {
     window.setVerticalSyncEnabled(true);
-    size = window.getSize();
 }
 
 void Window::update()
@@ -12,7 +13,7 @@ void Window::update()
     sf::Event event;
     if(window.pollEvent(event))
     {
-        if(event.type == sf::Event::Closed || sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
+        if(event.type == sf::Event::Closed)
         {
             window.close();
         }

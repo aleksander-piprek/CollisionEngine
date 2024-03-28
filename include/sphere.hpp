@@ -1,7 +1,9 @@
 #ifndef SPHERE_HPP
 #define SPHERE_HPP
 
+#include <iostream>
 #include <SFML/Graphics.hpp>
+#include "window.hpp"
 
 class Sphere
 {
@@ -13,9 +15,6 @@ class Sphere
 
         // Custom shape
         sf::CircleShape shape; 
-
-
-
         int radius;
         struct 
         {
@@ -23,11 +22,14 @@ class Sphere
             sf::Uint8 green = 0;
             sf::Uint8 blue = 255;
             sf::Uint8 opacity = 255;
-        } color;        
+        } color;   
 
-        sf::Vector2f initialPosition {800.0f, 100.0f};
-        sf::Vector2f positionCurrent;
-        sf::Vector2f positionOld;
+        struct 
+        {
+            sf::Vector2f initial {400.0f, 100.0f};
+            sf::Vector2f current;
+            sf::Vector2f previous;
+        } position;
 
         sf::Vector2f velocity;
 
