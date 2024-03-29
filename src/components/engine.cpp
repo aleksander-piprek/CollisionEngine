@@ -37,11 +37,6 @@ void Engine::generateObjects(int objectsCount)
     for(int i = 0; i < objectsCount; i++)
     {
         Sphere object;
-        object.radius = 40.0;
-        object.color.red = 255;
-        object.color.green = 150;
-        object.color.blue = 0;
-        object.color.opacity = 255;
         objects.push_back(object);
     }
 }

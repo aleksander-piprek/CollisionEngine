@@ -1,3 +1,7 @@
-build
-.vscode
+build/
+
+.vscode/
+.vs/
+
+*.json
 *.pdf

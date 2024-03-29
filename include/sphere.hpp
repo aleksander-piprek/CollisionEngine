@@ -15,7 +15,7 @@ class Sphere
 
         // Custom shape
         sf::CircleShape shape; 
-        int radius;
+        float radius = 40.0;
         struct 
         {
             sf::Uint8 red = 255;

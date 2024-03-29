@@ -28,8 +28,8 @@ class Engine
 
         sf::Vector2f gravity = {-1.0f, 1.0f};
 
-        int objectReleaseCount = 1;  
-        int totalObjects = 2;
+        int objectReleaseCount = 1;
+        int totalObjects = 1;
         float totalTime = 0;
         float releaseTime = 40.0f;
 }; 
