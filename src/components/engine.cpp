@@ -13,7 +13,7 @@ void Engine::update(float dt)
     applyConstraint();    
     applyGravity();
 
-    for(int i = 0; i <= objectReleaseCount; i++)
+    for(int i = 0; i < objectReleaseCount; i++)
         objects[i].updatePosition(dt);
 }
 
@@ -21,7 +21,7 @@ void Engine::draw()
 {
     window.beginDraw();
 
-    for(int i = 0; i <= objectReleaseCount; i++)
+    for(int i = 0; i < objectReleaseCount; i++)
         window.draw(objects[i].shape);
     
     window.endDraw();
@@ -59,13 +59,13 @@ void Engine::releaseObject(float dt)
 
 void Engine::applyGravity()
 {
-    for(int i = 0; i <= objectReleaseCount; i++)
+    for(int i = 0; i < objectReleaseCount; i++)
         objects[i].accelerate(gravity);
 }
 
 void Engine::applyConstraint()
 {
-    for(int i = 0; i <= objectReleaseCount; i++)
+    for(int i = 0; i < objectReleaseCount; i++)
     {
         sf::Vector2f position = objects[i].position.current;
         sf::Vector2f size(objects[i].radius * 2, objects[i].radius * 2);
