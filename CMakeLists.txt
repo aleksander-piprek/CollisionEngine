@@ -1,16 +1,16 @@
 cmake_minimum_required(VERSION 3.15)
 project(engine)
 
-if (WIN32)
-    set(CMAKE_PREFIX_PATH "D:\\Software Engineering\\SFML-2.6.1\\lib\\cmake\\SFML")
-endif (WIN32)
-
-if (POLICY CMP0141)
-  cmake_policy(SET CMP0141 NEW)
-  set(CMAKE_MSVC_DEBUG_INFORMATION_FORMAT "$<IF:$<AND:$<C_COMPILER_ID:MSVC>,$<CXX_COMPILER_ID:MSVC>>,$<$<CONFIG:Debug,RelWithDebInfo>:EditAndContinue>,$<$<CONFIG:Debug,RelWithDebInfo>:ProgramDatabase>>")
-endif()
+# if (WIN32)
+#     set(CMAKE_PREFIX_PATH "D:\\Software Engineering\\SFML-2.6.1\\lib\\cmake\\SFML")
+# endif (WIN32)
 
 find_package(SFML 2.5 COMPONENTS graphics audio REQUIRED)
+
+#find_library(SYS sfml-system)
+#find_library(GRAPHICS sfml-graphics)
+#find_library(WINDOW sfml-window)
+#find_library(AUDIO sfml-audio)
 
 set(SOURCES "src/main.cpp"
             "src/components/engine.cpp"

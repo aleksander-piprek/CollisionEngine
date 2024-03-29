@@ -2,11 +2,11 @@
 
 int main()
 {
-    auto engine = new Engine();
+    Engine engine;
 
-    while(engine->isRunning())
+    while(engine.isRunning())
     {
-        engine->update(0.5f);
-        engine->draw();
+        engine.update(0.5f);
+        engine.draw();
     }
 }
