@@ -6,7 +6,9 @@ int main()
 
     while(engine.isRunning())
     {
+        engine.updateTime();
         engine.update(0.5f);
         engine.draw();
+        engine.restartTime();
     }
 }

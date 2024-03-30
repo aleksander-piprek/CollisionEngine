@@ -9,20 +9,21 @@ Engine::Engine()
 void Engine::update(float dt)
 {
     window.update();
-    releaseObject(dt);
-    applyConstraint();    
+    applyConstraint();
     applyGravity();
 
-    for(int i = 0; i < objectReleaseCount; i++)
-        objects[i].updatePosition(dt);
+    for(auto& object : objects)
+        if(elapsedTime > 1.0f)
+            object.updatePosition(dt);
 }
 
 void Engine::draw()
 {
     window.beginDraw();
 
-    for(int i = 0; i < objectReleaseCount; i++)
-        window.draw(objects[i].shape);
+    for(auto& object : objects)
+        if(elapsedTime > 1.0f)
+            window.draw(object.shape);
     
     window.endDraw();
 }
@@ -30,6 +31,16 @@ void Engine::draw()
 bool Engine::isRunning() const
 {
     return window.isOpen();
+}
+
+void Engine::updateTime() 
+{
+    elapsedTime = clock.getElapsedTime().asSeconds();
+}
+
+void Engine::restartTime()
+{
+    clock.restart();
 }
 
 void Engine::generateObjects(int objectsCount)
@@ -41,29 +52,19 @@ void Engine::generateObjects(int objectsCount)
     }
 }
 
-void Engine::releaseObject(float dt)
-{
-    totalTime += dt;
-    if(totalTime == releaseTime)
-        if(objectReleaseCount < totalObjects)
-        {
-            objectReleaseCount++;
-            totalTime = 0;
-        }
-}
-
 void Engine::applyGravity()
 {
-    for(int i = 0; i < objectReleaseCount; i++)
-        objects[i].accelerate(gravity);
+    for(auto& object : objects)
+        if(elapsedTime > 1.0f)
+            object.accelerate(gravity);
 }
 
 void Engine::applyConstraint()
 {
-    for(int i = 0; i < objectReleaseCount; i++)
+    for(auto& object : objects)
     {
-        sf::Vector2f position = objects[i].position.current;
-        sf::Vector2f size(objects[i].radius * 2, objects[i].radius * 2);
+        sf::Vector2f position = object.position.current;
+        sf::Vector2f size(object.radius * 2, object.radius * 2);
 
         // Left border
         if (position.x - size.x < 0) 
@@ -81,6 +82,6 @@ void Engine::applyConstraint()
         if (position.y + size.y > window.screenHeight) 
             position.y = window.screenHeight - size.y; 
 
-        objects[i].position.current = position;
+        object.position.current = position;
     }
 }

@@ -16,6 +16,7 @@ class Sphere
         // Custom shape
         sf::CircleShape shape; 
         float radius = 40.0;
+
         struct 
         {
             sf::Uint8 red = 255;
@@ -34,6 +35,8 @@ class Sphere
         sf::Vector2f velocity;
 
         sf::Vector2f acceleration;
+
+        bool isReleased = false;
 };
 
 #endif

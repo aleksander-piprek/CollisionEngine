@@ -2,6 +2,7 @@
 #define ENGINE_HPP
 
 #include <SFML/Graphics.hpp>
+#include <SFML/System/Clock.hpp>
 #include <math.h>
 
 #include "window.hpp"
@@ -16,8 +17,10 @@ class Engine
         void draw();
         bool isRunning() const;
 
+        void updateTime(); 
+        void restartTime();
+
         void generateObjects(int count);
-        void releaseObject(float dt);
         void applyGravity();
         void applyConstraint();
         
@@ -26,12 +29,12 @@ class Engine
         WorkingDirectory workingDir;
         std::vector<Sphere> objects;
 
+        sf::Clock clock;        
+        float elapsedTime;
+
         sf::Vector2f gravity = {-1.0f, 1.0f};
 
-        int objectReleaseCount = 1;
-        int totalObjects = 1;
-        float totalTime = 0;
-        float releaseTime = 40.0f;
+        const int totalObjects = 5;
 }; 
 
 #endif
