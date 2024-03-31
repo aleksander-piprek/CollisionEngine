@@ -13,8 +13,7 @@ void Engine::update(float dt)
     applyGravity();
 
     for(auto& object : objects)
-        if(elapsedTime > 1.0f)
-            object.updatePosition(dt);
+        object.updatePosition(dt);
 }
 
 void Engine::draw()
@@ -22,8 +21,7 @@ void Engine::draw()
     window.beginDraw();
 
     for(auto& object : objects)
-        if(elapsedTime > 1.0f)
-            window.draw(object.shape);
+        window.draw(object.shape);
     
     window.endDraw();
 }
@@ -55,33 +53,27 @@ void Engine::generateObjects(int objectsCount)
 void Engine::applyGravity()
 {
     for(auto& object : objects)
-        if(elapsedTime > 1.0f)
-            object.accelerate(gravity);
+        object.accelerate(gravity);
 }
 
 void Engine::applyConstraint()
 {
     for(auto& object : objects)
     {
-        sf::Vector2f position = object.position.current;
-        sf::Vector2f size(object.radius * 2, object.radius * 2);
-
         // Left border
-        if (position.x - size.x < 0) 
-            position.x = size.x; 
+        if (object.position.current.x < 0) 
+            object.position.current.x = 0; 
 
         // Right border
-        if (position.x + size.x > window.screenWidth) 
-            position.x = window.screenWidth - size.x; 
+        if (object.position.current.x + object.radius * 2 > window.screenWidth) 
+            object.position.current.x = window.screenWidth - object.radius * 2; 
 
         // Top border
-        if (position.y - size.y < 0) 
-            position.y = -size.y; 
+        if (object.position.current.y < 0) 
+            object.position.current.y = 0; 
 
         // Bottom border
-        if (position.y + size.y > window.screenHeight) 
-            position.y = window.screenHeight - size.y; 
-
-        object.position.current = position;
+        if (object.position.current.y + object.radius * 2 > window.screenHeight) 
+            object.position.current.y = window.screenHeight - object.radius * 2; 
     }
 }

@@ -32,7 +32,7 @@ class Engine
         sf::Clock clock;        
         float elapsedTime;
 
-        sf::Vector2f gravity = {-1.0f, 1.0f};
+        sf::Vector2f gravity = {1.0f, -1.0f};
 
         const int totalObjects = 5;
 }; 
