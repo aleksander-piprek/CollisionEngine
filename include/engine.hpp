@@ -21,7 +21,7 @@ class Engine
         void restartTime();
 
         void generateObjects(int count);
-        void applyGravity();
+        void checkCollisions(float dt);
         void applyConstraint();
         
     private:
@@ -31,10 +31,10 @@ class Engine
 
         sf::Clock clock;        
         float elapsedTime;
+        float objectReleaseCount = 1;
+        float totalTime;
 
-        sf::Vector2f gravity = {1.0f, -1.0f};
-
-        const int totalObjects = 5;
+        const int totalObjects = 1;
 }; 
 
 #endif

@@ -13,9 +13,14 @@ class Sphere
         void setInitialPosition(sf::Vector2f newPosition);
         void accelerate(sf::Vector2f acc);
 
+        sf::Vector2f applyForces();
+
         // Custom shape
         sf::CircleShape shape; 
-        float radius = 40.0;
+        sf::Text text;
+        sf::Font font;
+
+        float radius = 15.0;
 
         struct 
         {
@@ -28,15 +33,17 @@ class Sphere
         struct 
         {
             sf::Vector2f initial {400.0f, 100.0f};
-            sf::Vector2f current;
             sf::Vector2f previous;
+            sf::Vector2f current;
         } position;
 
         sf::Vector2f velocity;
 
-        sf::Vector2f acceleration;
-
-        bool isReleased = false;
+        struct 
+        {
+            sf::Vector2f initial {0.0f, 1.0f};
+            sf::Vector2f current;
+        } acceleration;
 };
 
 #endif
