@@ -23,6 +23,7 @@ class Engine
         void generateObjects(int count);
         void checkCollisions(float dt);
         void applyConstraint();
+        void checkObjectToRelease();
         
     private:
         Window window;
@@ -31,10 +32,12 @@ class Engine
 
         sf::Clock clock;        
         float elapsedTime;
-        float objectReleaseCount = 1;
-        float totalTime;
 
-        const int totalObjects = 1;
+        float objectReleaseCount = 1;
+        float timeToReleaseObject = 10.0f;
+        float elapsedTimeToRelease = 0.0f;
+
+        const int totalObjects = 50;
 }; 
 
 #endif

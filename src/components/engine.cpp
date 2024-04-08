@@ -8,17 +8,12 @@ Engine::Engine()
 
 void Engine::update(float dt)
 {
-    window.update();
-    checkCollisions(dt);
-    applyConstraint();
+    elapsedTimeToRelease += dt;    
 
-    totalTime += dt;
-    if(totalTime > 10.0f)
-        if(objectReleaseCount != totalObjects)
-        {
-            objectReleaseCount++;
-            totalTime = 0;
-        }
+    window.update();
+    // checkCollisions(dt);
+    applyConstraint();
+    checkObjectToRelease();
 
     for(int i = 0; i < objectReleaseCount; i++)
         objects[i].updatePosition(dt);
@@ -28,12 +23,8 @@ void Engine::draw()
 {
     window.beginDraw();
 
-    // for(int i = 0; i < objectReleaseCount; i++)
-    // {
-    //     window.draw(objects[i].shape);
-    //     // window.draw(objects[i].text);
-    // }
-    window.draw(objects[0].text);
+    for(int i = 0; i < objectReleaseCount; i++)
+        window.draw(objects[i].shape);
 
     window.endDraw();
 }
@@ -59,6 +50,18 @@ void Engine::generateObjects(int objectsCount)
     {
         Sphere object;
         objects.push_back(object);
+    }
+}
+
+void Engine::checkObjectToRelease()
+{
+    if(elapsedTimeToRelease > timeToReleaseObject)
+    {
+        if(objectReleaseCount != totalObjects)
+        {
+            objectReleaseCount++;
+            elapsedTimeToRelease = 0;
+        }
     }
 }
 
@@ -106,10 +109,6 @@ void Engine::applyConstraint()
 
         // Bottom border
         if (object.position.current.y + object.radius * 2 > window.screenHeight) 
-        {
-            // object.position.current.y = window.screenHeight - object.radius * 2; 
-            object.acceleration.current.y = -0.75f;
-            object.accelerate(object.acceleration.current); 
-        }
+            object.position.current.y = window.screenHeight - object.radius * 2; 
     }
 }   

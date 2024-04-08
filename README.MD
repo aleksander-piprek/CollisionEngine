@@ -8,7 +8,7 @@ What is working:
 
 To be implemented:
 - Object collision
-- Rainbow colors of objects
+- Rainbow colors
 - Drawing vectors of velocity and acceleration
 - User input to control object movement
 - More sophisticated objects

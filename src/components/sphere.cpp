@@ -8,13 +8,7 @@ Sphere::Sphere()
                                  color.blue, 
                                  color.opacity));    
     setInitialPosition(position.initial);
-    accelerate(acceleration.initial);
-
-    text.setFont(font);
-    text.setString("Hello world");
-    text.setCharacterSize(24);
-    text.setFillColor(sf::Color::Yellow);
-    // text.setStyle(sf::Text::Bold);
+    setInitialAcceleration(acceleration.initial);
 }
 
 void Sphere::updatePosition(float dt)
@@ -27,7 +21,7 @@ void Sphere::updatePosition(float dt)
 
     shape.setPosition(position.current);
     
-    std::cout << "Position = x: " << position.current.x << "y: " << position.current.y << std::endl; 
+    // std::cout << "Position = x: " << position.current.x << "y: " << position.current.y << std::endl; 
 
     acceleration.current = {};
 }
@@ -41,12 +35,12 @@ void Sphere::setInitialPosition(sf::Vector2f newPosition)
     shape.setPosition(newPosition);
 }
 
+void Sphere::setInitialAcceleration(sf::Vector2f initialAcceleration)
+{
+    accelerate(acceleration.initial);
+}
+
 void Sphere::accelerate(sf::Vector2f acc)
 {
     acceleration.current += acc;
 }
-
-// sf::Vector2f Sphere::applyForces()
-// {
-
-// }
