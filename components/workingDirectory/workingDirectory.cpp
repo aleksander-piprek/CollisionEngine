@@ -1,4 +1,4 @@
-#include "../../include/workingDirectory.hpp"
+#include "workingDirectory.hpp"
 
 WorkingDirectory::WorkingDirectory()
 {

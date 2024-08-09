@@ -1,4 +1,4 @@
-#include "../../include/engine.hpp"
+#include "engine.hpp"
 
 Engine::Engine()
     : window("Collision Engine")

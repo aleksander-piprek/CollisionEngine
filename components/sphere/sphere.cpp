@@ -1,4 +1,4 @@
-#include "../../include/sphere.hpp"
+#include "sphere.hpp"
 
 Sphere::Sphere()
 {

@@ -7,16 +7,11 @@ endif (WIN32)
 
 find_package(SFML 2.5 COMPONENTS graphics audio system REQUIRED)
 
-set(SOURCES "src/main.cpp"
-            "src/components/engine.cpp"
-            "src/components/window.cpp"
-            "src/components/workingDirectory.cpp"
-            "src/components/sphere.cpp")
-
-set(INCLUDES "include/engine.hpp"
-             "include/window.hpp"
-             "include/workingDirectory.hpp"
-             "include/sphere.hpp")
+set(SOURCES "main.cpp"
+            "components/engine/engine.cpp"
+            "components/window/window.cpp"
+            "components/sphere/sphere.cpp"
+            "components/workingDirectory/workingDirectory.cpp")
 
 add_executable(engine ${SOURCES} ${INCLUDES})
 

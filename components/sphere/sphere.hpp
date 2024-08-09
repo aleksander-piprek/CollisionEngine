@@ -3,7 +3,7 @@
 
 #include <iostream>
 #include <SFML/Graphics.hpp>
-#include "window.hpp"
+#include "../window/window.hpp"
 
 class Sphere
 {

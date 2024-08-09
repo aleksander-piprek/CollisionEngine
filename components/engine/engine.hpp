@@ -5,9 +5,9 @@
 #include <SFML/System/Clock.hpp>
 #include <math.h>
 
-#include "window.hpp"
-#include "workingDirectory.hpp"
-#include "sphere.hpp"
+#include "../window/window.hpp"
+#include "../workingDirectory/workingDirectory.hpp"
+#include "../sphere/sphere.hpp"
 
 class Engine
 {
@@ -40,4 +40,4 @@ class Engine
         const int totalObjects = 50;
 }; 
 
-#endif
+#endif //ENGINE_HPP

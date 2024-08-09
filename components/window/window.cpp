@@ -1,4 +1,4 @@
-#include "../../include/window.hpp"
+#include "window.hpp"
 
 Window::Window(const std::string& windowName)
     : window(sf::VideoMode(800, 600), 
