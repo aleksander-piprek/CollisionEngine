@@ -11,7 +11,7 @@ void Engine::update(float dt)
     elapsedTimeToRelease += dt;    
 
     window.update();
-    // checkCollisions(dt);
+    checkCollisions(dt);
     applyConstraint();
     checkObjectToRelease();
 
@@ -95,20 +95,38 @@ void Engine::applyConstraint()
 {
     for(auto& object : objects)
     {
+        std::cout << object.acceleration.current.x << " " 
+        << object.acceleration.current.y << "\n";        
         // Left border
         if (object.position.current.x < 0) 
-            object.position.current.x = 0;
+        {
+            object.accelerate({
+                object.acceleration.initial.x,
+                object.acceleration.current.y});            
+        }
 
         // Right border
         if (object.position.current.x + object.radius * 2 > window.screenWidth) 
-            object.position.current.x = window.screenWidth - object.radius * 2; 
+        {
+            object.accelerate({
+                -object.acceleration.initial.x,
+                object.acceleration.current.y});            
+        }
 
         // Top border
         if (object.position.current.y < 0) 
-            object.position.current.y = 0;
+        {
+            object.accelerate({
+                object.acceleration.current.x,
+                object.acceleration.initial.y});
+        }
 
         // Bottom border
-        if (object.position.current.y + object.radius * 2 > window.screenHeight) 
-            object.position.current.y = window.screenHeight - object.radius * 2; 
+        if (object.position.current.y + object.radius * 2 > window.screenHeight)
+        {
+            object.accelerate({
+                object.acceleration.current.x,
+                -object.acceleration.initial.y});
+        }
     }
 }   
