@@ -7,21 +7,23 @@
 
 class Sphere
 {
+    void logObject();
+
     public:
         Sphere();
         void updatePosition(float dt);
         void setInitialPosition(sf::Vector2f newPosition);
         void setInitialAcceleration(sf::Vector2f initialAcceleration);
+        void setPosition(sf::Vector2f pos);
         void accelerate(sf::Vector2f acc);
-
-        sf::Vector2f applyForces();
 
         // Custom shape
         sf::CircleShape shape; 
         sf::Text text;
         sf::Font font;
 
-        float radius = 25.0;
+        int id = 0;
+        float radius = 15.0;
 
         struct 
         {
@@ -33,7 +35,7 @@ class Sphere
 
         struct 
         {
-            sf::Vector2f initial {400.0f, 100.0f};
+            sf::Vector2f initial {100.0f, 100.0f};
             sf::Vector2f previous;
             sf::Vector2f current;
         } position;
@@ -42,9 +44,9 @@ class Sphere
 
         struct 
         {
-            sf::Vector2f initial {20.0f, 20.0f};
+            sf::Vector2f initial {10.0f, 10.0f};
             sf::Vector2f current;
         } acceleration;
 };
 
-#endif
+#endif //SPHERE_HPP

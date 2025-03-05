@@ -34,10 +34,10 @@ class Engine
         float elapsedTime;
 
         float objectReleaseCount = 1;
-        float timeToReleaseObject = 10.0f;
+        float timeToReleaseObject = 15.0f;
         float elapsedTimeToRelease = 0.0f;
 
-        const int totalObjects = 1;
+        const int totalObjects = 50;
 }; 
 
 #endif //ENGINE_HPP

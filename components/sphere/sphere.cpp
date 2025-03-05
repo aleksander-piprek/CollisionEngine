@@ -20,10 +20,25 @@ void Sphere::updatePosition(float dt)
     position.current = position.current + velocity + acceleration.current * dt * dt;
 
     shape.setPosition(position.current);
-    
-    // std::cout << "Position = x: " << position.current.x << "y: " << position.current.y << std::endl; 
-    std::cout << velocity.x << " " << velocity.y << "\n";
+
+    // logObject();
+
     acceleration.current = {};
+}
+
+void Sphere::logObject()
+{
+    std::cout << "Object "<< id << std::endl;
+    std::cout << "  Position " 
+              << "      x: " << position.current.x 
+              << "          y: " << position.current.y << std::endl; 
+    std::cout << "  Velocity " 
+              << "      x: " << velocity.x 
+              << "            y: " << velocity.y << std::endl; 
+    std::cout << "  Acceleration " 
+              << "  x: " << acceleration.current.x 
+              << "            y: " << acceleration.current.y << std::endl; 
+
 }
 
 void Sphere::setInitialPosition(sf::Vector2f newPosition)
@@ -40,7 +55,12 @@ void Sphere::setInitialAcceleration(sf::Vector2f initialAcceleration)
     accelerate(acceleration.initial);
 }
 
+void Sphere::setPosition(sf::Vector2f pos)
+{
+    object1position.current = pos;
+}
+
 void Sphere::accelerate(sf::Vector2f acc)
 {
-    acceleration.current += acc;
+    this->acceleration.current += acc;
 }

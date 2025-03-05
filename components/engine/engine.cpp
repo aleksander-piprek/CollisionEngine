@@ -11,10 +11,11 @@ void Engine::update(float dt)
     elapsedTimeToRelease += dt;    
 
     window.update();
-    checkCollisions(dt);
+    // checkCollisions(dt);
     applyConstraint();
     checkObjectToRelease();
 
+    std::system ("clear");
     for(int i = 0; i < objectReleaseCount; i++)
         objects[i].updatePosition(dt);
 }
@@ -49,6 +50,7 @@ void Engine::generateObjects(int objectsCount)
     for(int i = 0; i < objectsCount; i++)
     {
         Sphere object;
+        object.id = i+1;
         objects.push_back(object);
     }
 }
@@ -67,25 +69,22 @@ void Engine::checkObjectToRelease()
 
 void Engine::checkCollisions(float dt)
 {
-    const float response = 0.75;
     for(int i = 0; i < objectReleaseCount; i++)
     {
-        auto object1 = objects[i];
-        for(int j = 0; j < objectReleaseCount; j++)
+        auto& object1 = objects[i];
+        for(int j = i + 1; j < objectReleaseCount; j++)
         {
-            auto object2 = objects[i];
+            auto& object2 = objects[j];
             const sf::Vector2f v = object1.position.current - object2.position.current;
-            const float distance = v.x * v.x + v.y * v.y;
+            const float distance = sqrt(v.x * v.x + v.y * v.y);
             const float minDistance = object1.radius + object2.radius;
-            if(distance < minDistance * minDistance)
+            if(distance < minDistance)
             {
                 const float distanceSqr = distance * distance;
-                const sf::Vector2f n = v / distanceSqr;
-                const float massRatio1 = object1.radius / (object1.radius + object2.radius);
-                const float massRatio2 = object2.radius / (object1.radius + object2.radius);
-                const float delta        = 0.5f * response * (distanceSqr - minDistance);
-                object1.position.current -= n * (massRatio2 * delta);
-                object2.position.current += n * (massRatio1 * delta);                    
+                const sf::Vector2f n = v / distance;
+                const float delta        = distance - minDistance;
+                object1.position.current -= n * 1.0f*delta;
+                object2.position.current += n * 1.0f*delta;                    
             }
         }
     }
@@ -95,8 +94,6 @@ void Engine::applyConstraint()
 {
     for(auto& object : objects)
     {
-        std::cout << object.acceleration.current.x << " " 
-        << object.acceleration.current.y << "\n";        
         // Left border
         if (object.position.current.x < 0) 
         {
@@ -129,4 +126,4 @@ void Engine::applyConstraint()
                 -object.acceleration.initial.y});
         }
     }
-}   
+}
