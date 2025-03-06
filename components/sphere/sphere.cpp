@@ -55,11 +55,6 @@ void Sphere::setInitialAcceleration(sf::Vector2f initialAcceleration)
     accelerate(acceleration.initial);
 }
 
-void Sphere::setPosition(sf::Vector2f pos)
-{
-    object1position.current = pos;
-}
-
 void Sphere::accelerate(sf::Vector2f acc)
 {
     this->acceleration.current += acc;

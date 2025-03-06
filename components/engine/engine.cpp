@@ -11,7 +11,7 @@ void Engine::update(float dt)
     elapsedTimeToRelease += dt;    
 
     window.update();
-    // checkCollisions(dt);
+    checkCollisions(dt);
     applyConstraint();
     checkObjectToRelease();
 
