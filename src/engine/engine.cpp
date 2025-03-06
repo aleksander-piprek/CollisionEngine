@@ -11,7 +11,7 @@ void Engine::update(float dt)
     elapsedTimeToRelease += dt;    
 
     window.update();
-    checkCollisions(dt);
+    checkCollisions();
     applyConstraint();
     checkObjectToRelease();
 
@@ -67,7 +67,37 @@ void Engine::checkObjectToRelease()
     }
 }
 
-void Engine::checkCollisions(float dt)
+void Engine::applyConstraint()
+{
+    for(auto& object : objects)
+    {
+        // Left border
+        if (object.position.current.x < 0) 
+        {
+            object.accelerate({object.acceleration.initial.x, 0});
+        }
+
+        // Right border
+        if (object.position.current.x + object.radius * 2 > window.screenWidth) 
+        {
+            object.accelerate({-object.acceleration.initial.x, 0});        
+        }
+
+        // Top border
+        if (object.position.current.y < 0) 
+        {
+            object.accelerate({0, object.acceleration.initial.y});
+        }
+
+        // Bottom border
+        if (object.position.current.y + object.radius * 2 > window.screenHeight)
+        { 
+            object.accelerate({0, -object.acceleration.initial.y});
+        }
+    }
+}
+
+void Engine::checkCollisions()
 {
     for(int i = 0; i < objectReleaseCount; i++)
     {
@@ -83,47 +113,9 @@ void Engine::checkCollisions(float dt)
                 const float distanceSqr = distance * distance;
                 const sf::Vector2f n = v / distance;
                 const float delta        = distance - minDistance;
-                object1.position.current -= n * 1.0f*delta;
-                object2.position.current += n * 1.0f*delta;                    
+                object1.position.current -= 1.0f * n * delta;
+                object2.position.current += 1.0f * n * delta;                    
             }
-        }
-    }
-}
-
-void Engine::applyConstraint()
-{
-    for(auto& object : objects)
-    {
-        // Left border
-        if (object.position.current.x < 0) 
-        {
-            object.accelerate({
-                object.acceleration.initial.x,
-                object.acceleration.current.y});            
-        }
-
-        // Right border
-        if (object.position.current.x + object.radius * 2 > window.screenWidth) 
-        {
-            object.accelerate({
-                -object.acceleration.initial.x,
-                object.acceleration.current.y});            
-        }
-
-        // Top border
-        if (object.position.current.y < 0) 
-        {
-            object.accelerate({
-                object.acceleration.current.x,
-                object.acceleration.initial.y});
-        }
-
-        // Bottom border
-        if (object.position.current.y + object.radius * 2 > window.screenHeight)
-        {
-            object.accelerate({
-                object.acceleration.current.x,
-                -object.acceleration.initial.y});
         }
     }
 }

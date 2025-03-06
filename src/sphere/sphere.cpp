@@ -1,4 +1,5 @@
 #include "sphere.hpp"
+#include <math.h>
 
 Sphere::Sphere()
 {
@@ -28,13 +29,13 @@ void Sphere::updatePosition(float dt)
 
 void Sphere::logObject()
 {
+    float instantaneousVelocity = std::sqrt(velocity.x * velocity.x + velocity.y * velocity.y);
     std::cout << "Object "<< id << std::endl;
     std::cout << "  Position " 
               << "      x: " << position.current.x 
               << "          y: " << position.current.y << std::endl; 
-    std::cout << "  Velocity " 
-              << "      x: " << velocity.x 
-              << "            y: " << velocity.y << std::endl; 
+    std::cout << "  Velocity       " 
+              << instantaneousVelocity << std::endl; 
     std::cout << "  Acceleration " 
               << "  x: " << acceleration.current.x 
               << "            y: " << acceleration.current.y << std::endl; 
@@ -57,5 +58,5 @@ void Sphere::setInitialAcceleration(sf::Vector2f initialAcceleration)
 
 void Sphere::accelerate(sf::Vector2f acc)
 {
-    this->acceleration.current += acc;
+    acceleration.current += acc;
 }

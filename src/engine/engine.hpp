@@ -21,7 +21,7 @@ class Engine
         void restartTime();
 
         void generateObjects(int count);
-        void checkCollisions(float dt);
+        void checkCollisions();
         void applyConstraint();
         void checkObjectToRelease();
         

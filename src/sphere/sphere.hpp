@@ -44,7 +44,7 @@ class Sphere
 
         struct 
         {
-            sf::Vector2f initial {10.0f, 10.0f};
+            sf::Vector2f initial {11.3141f, 11.3141f};
             sf::Vector2f current;
         } acceleration;
 };
