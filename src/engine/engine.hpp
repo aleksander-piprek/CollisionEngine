@@ -6,7 +6,6 @@
 #include <math.h>
 
 #include "../window/window.hpp"
-#include "../workingDirectory/workingDirectory.hpp"
 #include "../sphere/sphere.hpp"
 
 class Engine
@@ -27,7 +26,7 @@ class Engine
         
     private:
         Window window;
-        WorkingDirectory workingDir;
+        std::string workingDir = "../src/";
         std::vector<Sphere> objects;
 
         sf::Clock clock;        

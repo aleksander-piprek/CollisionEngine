@@ -22,12 +22,12 @@ void Engine::update(float dt)
 
 void Engine::draw()
 {
-    window.beginDraw();
+    window.clearContents();
 
     for(int i = 0; i < objectReleaseCount; i++)
-        window.draw(objects[i].shape);
+        window.setDrawableContents(objects[i].shape);
 
-    window.endDraw();
+    window.displayContents();
 }
 
 bool Engine::isRunning() const

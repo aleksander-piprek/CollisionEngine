@@ -9,12 +9,11 @@ class Window
         Window(const std::string& windowName);
 
         void update();
+        void clearContents();
+        void setDrawableContents(const sf::Drawable& drawable);
+        void displayContents();
 
-        void beginDraw();
-        void draw(const sf::Drawable& drawable);
-        void endDraw();
-
-        bool isOpen() const;
+        inline bool isOpen() const { return window.isOpen(); }
 
         sf::RenderWindow window;
         const int screenWidth = 800;
