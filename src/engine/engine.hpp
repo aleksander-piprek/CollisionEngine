@@ -26,7 +26,6 @@ class Engine
         
     private:
         Window window;
-        std::string workingDir = "../src/";
         std::vector<Sphere> objects;
 
         sf::Clock clock;        

@@ -4,10 +4,7 @@
 Sphere::Sphere()
 {
     shape.setRadius(radius);
-    shape.setFillColor(sf::Color(color.red, 
-                                 color.green, 
-                                 color.blue, 
-                                 color.opacity));    
+    shape.setFillColor(sf::Color(0, 255, 0));    
     setInitialPosition(position.initial);
     setInitialAcceleration(acceleration.initial);
 }

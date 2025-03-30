@@ -5,6 +5,8 @@
 
 class Window
 {
+    sf::RenderWindow window;
+
     public:
         Window(const std::string& windowName);
 
@@ -15,9 +17,10 @@ class Window
 
         inline bool isOpen() const { return window.isOpen(); }
 
-        sf::RenderWindow window;
-        const int screenWidth = 800;
-        const int screenHeight = 600;
+        static const int screenWidth = 800;
+        static const int screenHeight = 600;
+
+        const uint FPSLimit = 60;
 };
 
 #endif

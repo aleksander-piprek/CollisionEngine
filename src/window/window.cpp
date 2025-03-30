@@ -1,12 +1,12 @@
 #include "window.hpp"
 
 Window::Window(const std::string& windowName)
-    : window(sf::VideoMode(800, 600), 
+    : window(sf::VideoMode((uint)screenWidth, (uint)screenHeight), 
       windowName, 
       sf::Style::Titlebar)
 {
     window.setVerticalSyncEnabled(true);
-    window.setFramerateLimit(60);
+    window.setFramerateLimit(FPSLimit);
 }
 
 void Window::update()

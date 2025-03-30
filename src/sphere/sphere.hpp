@@ -18,20 +18,10 @@ class Sphere
         void accelerate(sf::Vector2f acc);
 
         // Custom shape
-        sf::CircleShape shape; 
-        sf::Text text;
-        sf::Font font;
+
 
         int id = 0;
         float radius = 15.0;
-
-        struct 
-        {
-            sf::Uint8 red = 255;
-            sf::Uint8 green = 0;
-            sf::Uint8 blue = 255;
-            sf::Uint8 opacity = 255;
-        } color;   
 
         struct 
         {
@@ -47,6 +37,11 @@ class Sphere
             sf::Vector2f initial {11.3141f, 11.3141f};
             sf::Vector2f current;
         } acceleration;
+        sf::CircleShape shape; 
+
+    private:
+        sf::Text text;
+        sf::Font font;
 };
 
 #endif //SPHERE_HPP

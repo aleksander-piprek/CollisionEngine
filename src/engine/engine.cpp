@@ -25,7 +25,9 @@ void Engine::draw()
     window.clearContents();
 
     for(int i = 0; i < objectReleaseCount; i++)
+    {
         window.setDrawableContents(objects[i].shape);
+    }
 
     window.displayContents();
 }
