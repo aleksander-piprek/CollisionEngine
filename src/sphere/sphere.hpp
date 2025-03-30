@@ -1,31 +1,26 @@
 #ifndef SPHERE_HPP
 #define SPHERE_HPP
 
+#include "../window/window.hpp"
+
 #include <iostream>
 #include <SFML/Graphics.hpp>
-#include "../window/window.hpp"
 
 class Sphere
 {
-    void logObject();
-
     public:
         Sphere();
         void updatePosition(float dt);
         void setInitialPosition(sf::Vector2f newPosition);
         void setInitialAcceleration(sf::Vector2f initialAcceleration);
-        void setPosition(sf::Vector2f pos);
         void accelerate(sf::Vector2f acc);
-
-        // Custom shape
-
 
         int id = 0;
         float radius = 15.0;
 
         struct 
         {
-            sf::Vector2f initial {100.0f, 100.0f};
+            sf::Vector2f initial;
             sf::Vector2f previous;
             sf::Vector2f current;
         } position;
@@ -34,12 +29,16 @@ class Sphere
 
         struct 
         {
-            sf::Vector2f initial {11.3141f, 11.3141f};
+            sf::Vector2f initial {0.0f, -11.3141f};
             sf::Vector2f current;
         } acceleration;
+
         sf::CircleShape shape; 
 
     private:
+        void logObject();
+        sf::Vector2f getRandomPosition();
+
         sf::Text text;
         sf::Font font;
 };

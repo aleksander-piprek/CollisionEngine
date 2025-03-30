@@ -1,10 +1,13 @@
 #include "sphere.hpp"
+
 #include <math.h>
+#include <random>
 
 Sphere::Sphere()
 {
     shape.setRadius(radius);
     shape.setFillColor(sf::Color(0, 255, 0));    
+    position.initial = getRandomPosition();
     setInitialPosition(position.initial);
     setInitialAcceleration(acceleration.initial);
 }
@@ -56,4 +59,16 @@ void Sphere::setInitialAcceleration(sf::Vector2f initialAcceleration)
 void Sphere::accelerate(sf::Vector2f acc)
 {
     acceleration.current += acc;
+}
+
+sf::Vector2f Sphere::getRandomPosition()
+{
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_real_distribution<float> dis(0, 1);
+
+    float x = dis(gen) * (Window::screenWidth - radius * 2);
+    float y = dis(gen) * (Window::screenHeight - radius * 2);
+
+    return {x, y};
 }
